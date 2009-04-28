@@ -1,6 +1,8 @@
-jack.record - (c) rohan drape, 2004
+jack.backup - (C) Alban Peignier, 2005-2009
 
-A JACK capture client.
+A JACK backup client.
 
 This is a source archive distributed subject to the terms of the GNU
 General Public License Version 2, see "COPYING".
+
+Based on jack.record - (c) rohan drape, 2004

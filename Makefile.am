@@ -14,9 +14,9 @@ MAINTAINERCLEANFILES =	aclocal.m4	\
 
 SUBDIRS = common
 
-bin_PROGRAMS = jack.record
-jack_record_SOURCES = jack.record.c
-jack_record_LDADD = common/libcommon.a
+bin_PROGRAMS = jack.backup
+jack.backup_SOURCES = jack.backup.c
+jack.backup_LDADD = common/libcommon.a
 
-man_MANS = jack.record.1
+man_MANS = jack.backup.1
 EXTRA_DIST = $(man_MANS)

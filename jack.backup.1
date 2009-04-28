@@ -1,8 +1,8 @@
 .TH JACK.RECORD "1" 0.1 "March 2004"
 .SH NAME
-jack.record \- JACK Capture Client
+jack.backup \- JACK Capture Client
 .SH SYNOPSIS
-.BR jack.record
+.BR jack.backup
 .RI [ options ]
 .I sound-file
 .SH OPTIONS
@@ -33,7 +33,7 @@ must be a valid template.
 Set a timer to stop the recording after the specified number of
 seconds (default=-1).
 .SH DESCRIPTION
-.B jack.record
+.B jack.backup
 is a light-weight 
 .B JACK
 capture client to write an arbitrary number of channels to disk.  It
@@ -48,7 +48,7 @@ this case the sound file name must be a valid template, the substring
 .I %d
 is replaced with the channel number counting from zero.
 .PP
-.B jack.record
+.B jack.backup
 will write files in any format supported by
 .BR libsndfile .
 The table below shows the most common file format masks.  For other

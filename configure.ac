@@ -3,11 +3,11 @@
 # Initialize autoconf.
 
 AC_PREREQ(2.53)
-AC_INIT(jack.record,0.1)
+AC_INIT(jack.backup,0.1)
 
 # Initialize automake.
 
-AM_INIT_AUTOMAKE(jack.record,0.1)
+AM_INIT_AUTOMAKE(jack.backup,0.1)
 
 # Check for programs. These macros set and export variables that are
 # used in the make process.

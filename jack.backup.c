@@ -1,4 +1,4 @@
-/***** jack.record.c - (c) rohan drape, 2003-2004 *****/
+/***** jack.backup.c - (c) rohan drape, 2003-2004 *****/
 
 #include <unistd.h>
 #include <stdio.h>
@@ -191,7 +191,7 @@ jackrecord_disk_thread_procedure (void *PTR)
 
       if (nbytes > d->buffer_bytes)
 	{
-	  eprintf ("jack.record: impossible condition, read space.\n");
+	  eprintf ("jack.backup: impossible condition, read space.\n");
 	  nbytes = d->buffer_bytes;
 	}
 
@@ -269,7 +269,7 @@ jackrecord_process (jack_nframes_t nframes, void *PTR)
 
   if (nbytes >= d->buffer_bytes)
     {
-      eprintf ("jack.record: period size exceeds limit\n");
+      eprintf ("jack.backup: period size exceeds limit\n");
       FAILURE;
       return 1;
     }
@@ -279,7 +279,7 @@ jackrecord_process (jack_nframes_t nframes, void *PTR)
   int space = (int) jack_ringbuffer_write_space (d->ring_buffer);
   if (space < nbytes)
     {
-      eprintf ("jack.record: overflow error, %d > %d\n", nbytes, space);
+      eprintf ("jack.backup: overflow error, %d > %d\n", nbytes, space);
       FAILURE;
       return 1;
     }
@@ -293,7 +293,7 @@ jackrecord_process (jack_nframes_t nframes, void *PTR)
 				   (size_t) nbytes);
   if (err != nbytes)
     {
-      eprintf ("jack.record: error writing to ringbuffer, %d != %d\n",
+      eprintf ("jack.backup: error writing to ringbuffer, %d != %d\n",
 	       err, nbytes);
       FAILURE;
       return 1;
@@ -321,7 +321,7 @@ jackrecord_create_timemarks (char *definition)
 
       if (time_mark_value < 0 || time_mark_value >= 60)
 	{
-	  eprintf ("jack.record: invalid timemark: %d\n", time_mark_value);
+	  eprintf ("jack.backup: invalid timemark: %d\n", time_mark_value);
 	  return NULL;
 	}
 
@@ -329,7 +329,7 @@ jackrecord_create_timemarks (char *definition)
 	{
 	  if (time_mark_value <= current->value)
 	    {
-	      eprintf ("jack.record: invalid timemark sequence: %d < %d\n",
+	      eprintf ("jack.backup: invalid timemark sequence: %d < %d\n",
 		       time_mark_value, current->value);
 	      return NULL;
 	    }
@@ -360,7 +360,7 @@ jackrecord_create_timemarks (char *definition)
 void
 jackrecord_usage (void)
 {
-  eprintf ("Usage: jack.record [ options ] sound-file\n");
+  eprintf ("Usage: jack.backup [ options ] sound-file\n");
   eprintf ("    -b N : Ring buffer size in frames (default=4096).\n");
   eprintf ("    -f N : File format (default=0x10006).\n");
   eprintf ("    -m N : Minimal disk read size in frames (default=32).\n");
@@ -423,7 +423,7 @@ main (int argc, char *argv[])
 	    }
 	  break;
 	default:
-	  eprintf ("jack.record: illegal option , %c\n", c);
+	  eprintf ("jack.backup: illegal option , %c\n", c);
 	  jackrecord_usage ();
 	  break;
 	}
@@ -437,7 +437,7 @@ main (int argc, char *argv[])
 
   if (d.channels < 1)
     {
-      eprintf ("jack.record: illegal number of channels requested: %d\n",
+      eprintf ("jack.backup: illegal number of channels requested: %d\n",
 	       d.channels);
       FAILURE;
     }
@@ -448,7 +448,7 @@ main (int argc, char *argv[])
 
   /* Connect to JACK. */
 
-  jack_client_t *client = jack_client_unique ("jack.record");
+  jack_client_t *client = jack_client_unique ("jack.backup");
   jack_set_error_function (jack_client_minimal_error_handler);
   jack_on_shutdown (client, jack_client_minimal_shutdown_handler, 0);
   jack_set_process_callback (client, jackrecord_process, &d);
@@ -467,7 +467,7 @@ main (int argc, char *argv[])
 
   if (d.timer_timemarks != NULL && d.timer_seconds > -1)
     {
-      eprintf ("jack.record: -t and -k can't be used both\n");
+      eprintf ("jack.backup: -t and -k can't be used both\n");
       FAILURE;
     }
 
@@ -476,7 +476,7 @@ main (int argc, char *argv[])
     {
       if (!strstr (d.filetemplate, "%N"))
 	{
-	  eprintf ("jack.record: illegal template , '%s'\n", d.filetemplate);
+	  eprintf ("jack.backup: illegal template , '%s'\n", d.filetemplate);
 	  jackrecord_usage ();
 	}
     }

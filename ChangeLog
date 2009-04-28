@@ -1,3 +1,7 @@
+2009-04-28  Alban Peignier  <alban.peignier@free.fr>
+
+	* Fork jack.backup from jack.record
+
 2004-08-24  Rohan Drape  <rohan@henri.localdomain>
 
 	* Makefile.am: Restructure to have common files in correct
