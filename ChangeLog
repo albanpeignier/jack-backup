@@ -1,0 +1,26 @@
+2004-08-24  Rohan Drape  <rohan@henri.localdomain>
+
+	* Makefile.am: Restructure to have common files in correct
+	location and to build common/libcommon.a.
+
+2004-03-30  Rohan Drape  <rohan@henri.localdomain>
+
+	* jack.record.c: Remove channel limit.
+
+2004-03-29  Rohan Drape  <rohan@henri.localdomain>
+
+	* jack.record.c: Finalize writing multiple single channel files.
+
+2004-03-28  Rohan Drape  <rohan@henri.localdomain>
+
+	* jack.record.c: Do initial work on allowing writing multiple
+	single channel files in the place of single mutiple channel files.
+
+2004-03-24  Rohan Drape  <rohan@henri.localdomain>
+
+	* jack.record.1: Create file.  Do not use configure.ac to set the
+	version number.  This is clumsy, and manual pages should be
+	revised when version numbers are bumped.
+
+	* jack.record.c: Create file as variant of sw-05/jack.play.c.
+
