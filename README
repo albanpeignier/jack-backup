@@ -1,8 +1,41 @@
-jack.backup - (C) Alban Peignier, 2005-2009
-
 A JACK backup client.
+
+jack.backup is based jack.record. It can perform continous recording
+by using a new recording file periodicaly.
+
+The recording period can be define either :
+
+- by time length : each recording file will have the specified time length (in minutes)
+- by time marks : to change files at given minutes of the hour (by example 0,30 or 0,20,40)
+
+* Examples
+
+Define recording periods by time marks :
+
+  jack.backup -k 0,15,30,45 /var/lib/recording/%Y%m%d-%H%m%S.wav
+
+will record and create files :
+
+  20090428-210402.wav
+  20090428-211500.wav  
+  20090428-213000.wav
+  20090428-214500.wav
+  20090428-220000.wav
+
+Define recording periods by time length :
+
+  jack.backup -t 15 -l /var/lib/recording/%Y%m%d-%H%m%S.wav
+
+will record and create files :
+
+  20090428-210402.wav
+  20090428-211902.wav
+  20090428-213402.wav
+  20090428-214902.wav
+  20090428-220402.wav
 
 This is a source archive distributed subject to the terms of the GNU
 General Public License Version 2, see "COPYING".
 
+jack.backup - (C) Alban Peignier, 2005-2009
 Based on jack.record - (c) rohan drape, 2004
